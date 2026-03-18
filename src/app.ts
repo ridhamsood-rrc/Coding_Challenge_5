@@ -2,7 +2,7 @@
 
 import express, {Express} from "express";
 import { healthCheckPoint } from "./api/v1/models/healthcheckmodel";
-import setupSwagger from "../src/config/swaggerConfig";
+import libraryRouter from "./api/v1/routes/resourceRoutes";
 
 // Initialize the express application
 const app: Express = express();
@@ -23,6 +23,6 @@ app.get("/api/v1/health", (req, res) => {
     res.json(healthData);
 });
 
-setupSwagger(app);
+app.use("/api/v1/resources", libraryRouter)
 
 export default app;
